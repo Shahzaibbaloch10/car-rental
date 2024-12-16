@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import './App.css';
 
+import Index from './pages/indexpage';
+import Header from './components/header/header';
+import Rentcar from './pages/indexpage/rent-your-car/rentcar';
+import Login from './components/account/login';
+import Signup from './components/account/signup';
+import Vehicles from './pages/ourcars/vehicles';
+import About from './pages/about/about';
+import Contact from './pages/contact/contact';
+import Cardetailform from './components/cardetails/cardetailform';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+<BrowserRouter>
+<Routes>
+<Route path='/' element={<><Index/></>}/>
+<Route path='/yourcar' element={<><Rentcar/></>}/>
+<Route path='/login' element={<><Login/></>}/>
+<Route path='/signup' element={<><Signup/></>}/>
+<Route path='/allcars' element={<><Vehicles/></>}/>
+<Route path='/about' element={<><About/></>}/>
+<Route path='/contact' element={<><Contact/></>}/>
+<Route path='/cardetailsform' element={<><Cardetailform/></>}/>
+</Routes>
+</BrowserRouter>
+
+
     </div>
   );
 }

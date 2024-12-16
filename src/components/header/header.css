@@ -1,0 +1,67 @@
+.navbar{
+
+    /* position: relative; */
+    background-color: white;
+width: 95%;
+    display: flex;
+    align-items: center;
+margin: 1% 3%;
+}
+.navbarleft img{
+width: 30%;
+}
+.navbarleft{
+    width: 50%;
+    display: flex;
+/* justify-content: space-between; */
+
+gap: 20%;
+align-items: center;
+}
+.navbarleft a{
+text-decoration: none;
+color: black;
+/* display: flex; */
+/* font-size: medium;
+ */
+ font-size: large;
+font-weight: bold;
+/* line-height: 50px; */
+ /* align-items: center; */
+&:hover{
+color: red;
+
+}
+
+}
+.navbarleft div{
+    display: flex;
+gap: 20%;
+
+    align-items: center;
+
+}
+.navbarright{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+   /* background-color: aqua; */
+   width: 30%;
+    
+}
+.navbarright .iconbox {
+font-size: large;
+position: relative;
+
+}
+.searchbox{
+border: 1px solid red;
+    border-radius: 10px;
+position: absolute;
+width: 50%;
+padding: 15px 25px;
+left:25%;
+transition: 1s ease;
+top: 100%;
+}
+
