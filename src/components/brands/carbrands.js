@@ -25,10 +25,10 @@ function Carbrands() {
 <h4>Budget</h4>
 </div>
 <div className="brand" data-aos="fade-right"
- onMouseEnter={() => setHover2(false)} 
- onMouseLeave={() => setHover2(true)}
+ onMouseEnter={() => setHover2(true)} 
+ onMouseLeave={() => setHover2(false)}
 >
-<img src={hover2?'https://rently.pk/assets/category/Car2.png':'https://rently.pk/assets/category/Car-2.png'}  alt="" />
+<img src={hover2?'https://rently.pk/assets/category/Car-2.png':'https://rently.pk/assets/category/Car2.png'}  alt="" />
 <h4>Stantard</h4>
 </div>
 <div className="brand" data-aos="fade-left"
