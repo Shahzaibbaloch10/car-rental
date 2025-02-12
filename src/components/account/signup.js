@@ -1,119 +1,137 @@
-import React from 'react'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
 import './account.css'
+import { errormessage, successmessage  } from '../../utils';
+import { useNavigate } from 'react-router-dom';
+
+
 function Signup() {
+const [signup ,setsignup]=useState(
+{
+fname:'',
+lname:'',
+mobile:'',
+email:'',
+age:'',
+password:'',
+
+
+});
+const navigate = useNavigate();
+const handlechange = (e)=>{
+  const {name, value}= e.target;
+  console.log(name,value)
+const signupinfo=  {...signup};
+ signupinfo[name]=value;
+ setsignup(signupinfo)
+
+
+ 
+}
+const handlesubmit = async (e)=>{
+e.preventDefault();
+const {fname,lname,email,password,age,mobile}= signup;
+
+
+if(!fname || !lname||!email||!password || !age || !mobile){
+return errormessage('allfiald are requird ');
+}
+
+
+  // Convert date of birth to age
+  const birthDate = new Date(age);
+  const today = new Date();
+  let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+
+  // Check if the birthday has passed this year
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    calculatedAge--; // Reduce age if birthday hasn't occurred yet this year
+  }
+
+  if (calculatedAge < 18) {
+    return errormessage("You must be at least 18 years old to sign up.");
+  }
+
+try{
+ const responce = await fetch('http://localhost:8080/user/signup',{
+method:"post",
+headers:{
+  'content-Type':'application/json'
+},
+body: JSON.stringify(signup)
+ })
+ const resulth = await responce.json()
+ const {success ,message}= resulth;
+ if(success){
+ successmessage(message)
+setTimeout(()=>{
+  navigate('/')
+},1000)
+
+ }
+}catch(error){
+  errormessage(error)
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
   return (
     <div className='signup'>
-<form action="" className='form1'>
+<form action="" className='form1'  onSubmit={handlesubmit}>
 
   <div className="formbox">
 <h1>SIGNUP</h1>
 <div>
   <div className='div2'>
 <label htmlFor="">First Name*</label>
-<input type="text"  required/></div>
+<input type="text" onChange={handlechange} name='fname' value={signup.fname} /></div>
 <div className="div2">
 <label htmlFor="">Last Name*</label>
-<input type="text"  required/></div>
+<input type="text" onChange={handlechange} name='lname' value={signup.lname} /></div>
 </div>
 <div>
   <div className="div2">
 <label htmlFor="">Mobile Number</label>
-<input type="text"  required/>
+<input type="text" onChange={handlechange} name='mobile' value={signup.mobile} />
 </div>
 <div className="div2">
 <label htmlFor="">Email</label>
-<input type="email" required /></div>
+<input type="email" onChange={handlechange} name='email'  value={signup.email}  /></div>
 </div>
 <div>
   <div className="div2">
 <label htmlFor="">Password</label>
-<input type="password" required/>
+<input type="password" onChange={handlechange} name='password' id='pass' value={signup.password} />
 </div>
-<div className="div2">
-<label htmlFor="">Confirm Password</label>
-<input type="password" required/>
-</div>
-</div>
-<div>
-<div className='div2'>
-  <label htmlFor="">Gender</label>
-  <div>
-    <div>
-<input type="radio"  name='gender'/>
-  <label htmlFor="">Male</label>
-
-<input type="radio"  name='gender'/>
-<label htmlFor="">Female</label>
-</div>
-</div>
-</div>
-
 <div className='div2'>
 <label htmlFor="">Date of Birth:</label>
 <div>
-  <label htmlFor="">Day</label>
+ 
 <div>
-  <select name="" id="">
-<option value="">1</option>
-<option value="">2</option>
-<option value="">3</option>
-<option value="">4</option>
-<option value="">5</option>
-<option value="">6</option>
-<option value="">7</option>
-<option value="">8</option>
-<option value="">9</option>
-<option value="">10</option>
-<option value="">11</option>
-<option value="">12</option>
-<option value="">13</option>
-<option value="">14</option>
-<option value="">15</option>
-<option value="">16</option>
-<option value="">17</option>
-<option value="">18</option>
-<option value="">19</option>
-<option value="">20</option>
-<option value="">21</option>
-<option value="">22</option>
-<option value="">23</option>
-<option value="">24</option>
-<option value="">25</option>
-<option value="">26</option>
-<option value="">27</option>
-<option value="">28</option>
-<option value="">29</option>
-<option value="">30</option>
-<option value="">31</option>
-
-
-
-  </select>
+   <input type="date"  onChange={handlechange} value={signup.age} name='age'  />
 </div>
 
-<label htmlFor="">month</label>
-<div>
-<select name="" id="">
-<option value="">1</option>
-<option value="">2</option>
-<option value="">3</option>
-<option value="">4</option>
-<option value="">5</option>
-<option value="">6</option>
-<option value="">7</option>
-<option value="">8</option>
-<option value="">9</option>
-<option value="">10</option>
-<option value="">11</option>
-<option value="">12</option>
-</select>
+
 </div>
 </div>
+
 </div>
-</div>
+
 <div className='d3' style={{display:"flex" ,justifyContent:"center", alignItems:"center" ,width:"100%"}}>
-<input type="submit" name='signup'  value="signup" className='bg-danger simple'/>
+
+<button type='submit' onSubmit={handlesubmit} className='bg-danger simple'>signup</button>
 </div>
 </div>
  </form>

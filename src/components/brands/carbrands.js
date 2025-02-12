@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './carbrands.css'
 function Carbrands() {
   const [hover1, setHover1] = useState(false);
@@ -16,7 +17,8 @@ function Carbrands() {
     
 <h1>What type of car are you looking for?</h1>
     
-<div className="brand-box" > 
+<div className="brand-box" >
+  <NavLink to='/budget'> 
 <div className="brand" data-aos="fade-right"
  onMouseEnter={() => setHover1(true)} 
  onMouseLeave={() => setHover1(false)}
@@ -24,6 +26,7 @@ function Carbrands() {
 <img src={hover1?'https://rently.pk/assets/category/Car-1.png':'https://rently.pk/assets/category/Car1.png'}  alt="" />
 <h4>Budget</h4>
 </div>
+</NavLink>
 <div className="brand" data-aos="fade-right"
  onMouseEnter={() => setHover2(true)} 
  onMouseLeave={() => setHover2(false)}
