@@ -57,11 +57,16 @@ return errormessage('allfiald are requird ');
 try{
  const responce = await fetch('http://localhost:8080/user/signup',{
 method:"post",
+credentials: "include",
 headers:{
   'content-Type':'application/json'
+
 },
-body: JSON.stringify(signup)
+body: JSON.stringify(signup),
  })
+ if (!responce.ok) {
+  errormessage("Signup failed. Please try again.");
+}
  const resulth = await responce.json()
  const {success ,message}= resulth;
  if(success){

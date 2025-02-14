@@ -10,6 +10,7 @@ import Vehicles from './pages/ourcars/vehicles';
 import About from './pages/about/about';
 import Contact from './pages/contact/contact';
 import Cardetailform from './components/cardetails/cardetailform';
+import PrivateRoute from './PrivateRoute';
 function App() {
   return (
     <div className="App">
@@ -17,13 +18,18 @@ function App() {
 <BrowserRouter>
 <Routes>
 <Route path='/' element={<><Index/></>}/>
+<Route path='/contact' element={<><Contact/></>}/>
 <Route path='/yourcar' element={<><Rentcar/></>}/>
 <Route path='/login' element={<><Login/></>}/>
 <Route path='/signup' element={<><Signup/></>}/>
 <Route path='/allcars' element={<><Vehicles/></>}/>
 <Route path='/about' element={<><About/></>}/>
-<Route path='/contact' element={<><Contact/></>}/>
+<Route element={<><PrivateRoute/></>}>
+
+
 <Route path='/cardetailsform' element={<><Cardetailform/></>}/>
+</Route>
+
 </Routes>
 </BrowserRouter>
 
