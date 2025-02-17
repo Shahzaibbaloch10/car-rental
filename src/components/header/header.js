@@ -23,7 +23,7 @@ function Header() {
     return (
         <div className='header'>
             <div className="navbar">
-                <div className="navbarleft">
+                 <div className="navbarleft">
                     <img src="https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/07/logo.png" alt="" />
                     <div>
                         <a href="/">Home</a>
