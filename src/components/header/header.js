@@ -1,22 +1,43 @@
 import React, { useState,useEffect } from 'react'
 import useAuth from '../../hooks/useAuth';
 import './header.css'
+import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+import { CgProfile } from "react-icons/cg";
 function Header() {
-    // const navigate= useNavigate();
-    const [showSearch, setShowSearch] = useState(false);
-    // const selling=()=>{
-    //     navigate("/yourcar")
-    // }
+    
     const { isauth, user } = useAuth();
 
     useEffect(() => {
         console.log("Auth state changed", isauth);
     }, [isauth]); // ✅ UI ko forcefully re-render karega
 
+const handllogout = async()=>{
+try {
+    const responce= await fetch('http://localhost:8080/user/logout',{
+method:"POST",
+credentials:'include',
 
+    })
+const data= responce.json();
+if (data.success) {
+   window.location.reload()
+} else {
+    console.error("Logout failed:", data.message);
+    window.location.reload()
+}
+
+
+
+} catch (error) {
+   
+    console.error("Logout error:", error);
+}
+
+
+
+}
 
 
 
@@ -34,15 +55,19 @@ function Header() {
                 </div>
                 <div className="navbarright">
 
-                    <div className="iconbox" onClick={() => setShowSearch(!showSearch)} style={{ cursor: 'pointer' }}>
-
-                        <FontAwesomeIcon className='icon' icon={faMagnifyingGlass} /></div>
-                    {showSearch && (
-                        <input type="text" className='searchbox' placeholder='search ' />
-                    )}
+                    
                     {isauth ? (
-                        <div>
-                            profile
+                        <div className='profile' >
+                            
+                          <div style={{
+                            fontSize:'30px',
+                            
+                          }}><CgProfile /></div>
+                            <ul className='profile-dropdown'>
+                                <li><NavLink to='/profile'>PROFILE</NavLink> </li>
+                                <li onClick={handllogout}>LOGOUT</li>
+                                
+                                </ul>  
                         </div>
                     ):(
                     <div>

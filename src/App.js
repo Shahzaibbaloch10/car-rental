@@ -11,11 +11,12 @@ import About from './pages/about/about';
 import Contact from './pages/contact/contact';
 import Cardetailform from './components/cardetails/cardetailform';
 import PrivateRoute from './PrivateRoute';
+import Profile from './pages/profile/profile';
 function App() {
   return (
     <div className="App">
-      <Header/>
 <BrowserRouter>
+      <Header/>
 <Routes>
 <Route path='/' element={<><Index/></>}/>
 <Route path='/contact' element={<><Contact/></>}/>
@@ -26,7 +27,7 @@ function App() {
 <Route path='/about' element={<><About/></>}/>
 <Route element={<><PrivateRoute/></>}>
 
-
+<Route path='/profile' element={<><Profile/></>}/>
 <Route path='/cardetailsform' element={<><Cardetailform/></>}/>
 </Route>
 

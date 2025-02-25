@@ -1,0 +1,17 @@
+.vehicles{
+background-color: rgb(247, 242, 242);
+    width: 98%;
+    padding: 1%;
+  
+}
+.allcarhead{
+text-align: center;
+    
+}
+.all-car{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+
+}

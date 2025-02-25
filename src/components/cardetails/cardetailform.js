@@ -4,14 +4,14 @@ import './cardetails.css';
 
 import useAuth from '../../hooks/useAuth';
 import { errormessage, successmessage } from '../../utils';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function Cardetailform() {
     // const [imageSrcs, setImageSrcs] = useState([]);
     const [imageFiles, setImageFiles] = useState([]); // New state for File objects
-const [imageUrls, setImageUrls] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedCar, setSelectedCar] = useState('');
-    const { user} = useAuth();
+    const { user } = useAuth();
     const [alldata, setdata] = useState({
         ownerid: '',
         brand: '',
@@ -32,7 +32,7 @@ const [imageUrls, setImageUrls] = useState([]);
         Mercedes: ['A-Class', 'C-Class', 'E-Class', 'GLA', 'S-Class'],
         Tesla: ['Model S', 'Model 3', 'Model X', 'Model Y'],
     };
-const Navigate = useNavigate();
+    const Navigate = useNavigate();
     const handleBrandChange = (e) => {
         setSelectedBrand(e.target.value);
         setSelectedCar('');
@@ -61,12 +61,12 @@ const Navigate = useNavigate();
             [e.target.name]: e.target.value
         });
     }
- 
+
 
     const handsubmit = async (e) => {
- 
+
         e.preventDefault();
-        
+
         const formdata = new FormData();
         formdata.append('ownerid', user._id);
         formdata.append('brand', selectedBrand);
@@ -78,51 +78,51 @@ const Navigate = useNavigate();
         imageFiles.forEach((file) => {
             formdata.append('images', file);
         });
-        // const fileInput = document.getElementById("customFile");
-        // imageSrcs.forEach((file) => {
-        //     formdata.append('images', file);
-        // });
-        console.log("Form Data Submitted:", Object.fromEntries(formdata));
-    
-        if ( imageFiles.length < 2) {
+
+        if (imageFiles.length < 2) {
             errormessage("Please upload at least 2 images!");
-           
+
         }
-if(!selectedBrand||!selectedCar||!alldata.year||!alldata.address||! alldata.type||!alldata.price){
+        if (!selectedBrand || !selectedCar || !alldata.year || !alldata.address || !alldata.type || !alldata.price) {
 
- errormessage("plz fill all faild")
-
-
-
-}
-
-try {
-    
-const responce = await fetch('http://localhost:8080/car/add-car',{
-method:"post",
-
-body:formdata
-})
-const resulth = await responce.json();
-if(resulth.success){
-    successmessage('your car is posted')
-Navigate('/');
-}
+            errormessage("plz fill all faild")
 
 
 
-} catch (error) {
-    
-errormessage("your car can't post ");
-console.log(error)
+        }
 
+        try {
 
-}
+            const responce = await fetch('http://localhost:8080/car/add-car', {
+                method: "post",
+               
+                body: formdata
+            })
+            const resulth = await responce.json();
+            if (resulth.message) {
+                successmessage('your car is posted')
+                Navigate('/');
+            }
+            if (!resulth.message) {
+                errormessage(resulth.message)
+
+            }
 
 
 
 
-       
+        } catch (error) {
+
+            errormessage("your car can't post ");
+            console.log("error", error)
+
+
+        }
+
+
+
+
+
 
 
 
@@ -132,13 +132,13 @@ console.log(error)
     return (
         <div className='container-fluid' style={{ backgroundColor: "rgba(220,53,69,1)" }}>
             <div className="container bgdetails pt-5">
-                <form action="" onSubmit={handsubmit} className='cardetailsform' style={{ backgroundColor: "white" }}>
+                <form action="" onSubmit={handsubmit} className='cardetailsform' style={{ backgroundColor: "white" }} >
 
                     {/* Image Upload Section */}
                     <div className="upload-img">
                         <label htmlFor="customFile">Upload Images*</label>
                         <div className="mb-2 d-flex flex-wrap">
-                            { imageUrls.length > 0 ? (
+                            {imageUrls.length > 0 ? (
                                 imageUrls.map((src, index) => (
                                     <img
                                         key={index}
@@ -162,7 +162,7 @@ console.log(error)
                                     id="customFile"
                                     multiple // 🔥 Allow multiple image selection
                                     onChange={handleImageChange}
-                                    // Only accept image files
+                                // Only accept image files
                                 />
                             </div>
                         </div>

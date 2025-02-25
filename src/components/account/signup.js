@@ -71,9 +71,12 @@ body: JSON.stringify(signup),
  const {success ,message}= resulth;
  if(success){
  successmessage(message)
-setTimeout(()=>{
+ setTimeout(()=>{
+
   navigate('/')
-},1000)
+  window.location.reload() 
+},2000)
+
 
  }
 }catch(error){
@@ -136,7 +139,7 @@ setTimeout(()=>{
 
 <div className='d3' style={{display:"flex" ,justifyContent:"center", alignItems:"center" ,width:"100%"}}>
 
-<button type='submit' onSubmit={handlesubmit} className='bg-danger simple'>signup</button>
+<button type='submit'  className='bg-danger simple'>signup</button>
 </div>
 </div>
  </form>

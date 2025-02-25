@@ -41,7 +41,12 @@ console.log(result)
 if(!result.success){
 
 successmessage(result.message)
-navigate('/')
+setTimeout(()=>{
+
+  navigate('/')
+  window.location.reload() 
+},2000)
+
 }else{
   errormessage(result.message)
 }
