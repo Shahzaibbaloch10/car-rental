@@ -1,0 +1,104 @@
+.cars{
+    display: flex;
+    
+    justify-content: space-between;
+margin: 10px;
+gap: 10px;
+height: 100vh;
+}
+.left{
+ 
+    width: 100%;
+height: 100vh;
+overflow: auto;
+}
+.left::-webkit-scrollbar {
+    display: none;
+  }
+.right{
+    background-color: green;
+    width: 80%;
+    height: 100vh;
+
+    position: sticky;
+    top: 0;
+    height: fit-content;
+}
+/* Blur effect when modal is open */
+.blur-background {
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+
+/* Thumbnail Images */
+.car-thumbnail {
+    width: 120px;
+    height: 90px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.car-thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* Lightbox Modal */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+z-index: 1;
+}
+
+/* Lightbox Image */
+.lightbox-image {
+    max-width: 80%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
+z-index: 1;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: white;
+    color: black;
+    border: none;
+    font-size: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.close-btn:hover {
+    background: red;
+    color: white;
+}
+
+/* Navigation Buttons */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    color: black;
+    border: none;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+.prev-btn:hover, .next-btn:hover {
+    background: white;
+}

@@ -9,7 +9,7 @@ const checkauth =async ()=>{
 try {
     const response = await fetch("http://localhost:8080/auth/verify", {
         method: "GET",
-        credentials: "include", // Cookies ko bhejne ke liye
+        credentials: "include", 
     });
 
 const data = await response.json();

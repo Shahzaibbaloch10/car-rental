@@ -6,6 +6,7 @@ import Header from './components/header/header';
 import Rentcar from './pages/indexpage/rent-your-car/rentcar';
 import Login from './components/account/login';
 import Signup from './components/account/signup';
+import Carsdetails from './pages/carbooking/carsdetails';
 import Vehicles from './pages/ourcars/vehicles';
 import About from './pages/about/about';
 import Contact from './pages/contact/contact';
@@ -25,8 +26,9 @@ function App() {
 <Route path='/signup' element={<><Signup/></>}/>
 <Route path='/allcars' element={<><Vehicles/></>}/>
 <Route path='/about' element={<><About/></>}/>
-<Route element={<><PrivateRoute/></>}>
 
+<Route element={<><PrivateRoute/></>}>
+<Route path='/cardetails/:id' element={<><Carsdetails/></>}/>
 <Route path='/profile' element={<><Profile/></>}/>
 <Route path='/cardetailsform' element={<><Cardetailform/></>}/>
 </Route>

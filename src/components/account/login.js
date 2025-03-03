@@ -47,8 +47,6 @@ setTimeout(()=>{
   window.location.reload() 
 },2000)
 
-}else{
-  errormessage(result.message)
 }
 }catch(error){
 

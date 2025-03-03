@@ -6,8 +6,8 @@ import useAuth from '../../hooks/useAuth';
 import { errormessage, successmessage } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 function Cardetailform() {
-    // const [imageSrcs, setImageSrcs] = useState([]);
-    const [imageFiles, setImageFiles] = useState([]); // New state for File objects
+  
+    const [imageFiles, setImageFiles] = useState([]); 
     const [imageUrls, setImageUrls] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedCar, setSelectedCar] = useState('');
@@ -95,8 +95,7 @@ function Cardetailform() {
 
             const responce = await fetch('http://localhost:8080/car/add-car', {
                 method: "post",
-               
-                body: formdata
+                body: formdata,
             })
             const resulth = await responce.json();
             if (resulth.message) {
@@ -104,7 +103,9 @@ function Cardetailform() {
                 Navigate('/');
             }
             if (!resulth.message) {
-                errormessage(resulth.message)
+                errormessage(resulth.message 
+                ||"Something went wrong! Try again."
+                )
 
             }
 

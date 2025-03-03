@@ -59,6 +59,15 @@ function Vehicles() {
       <div className="all-car">
         {cars.map((car, index) => (
           <div className="car-info-box" key={index}>
+            <NavLink
+            style={{
+textDecoration:'none',
+color:'black'
+
+
+            }}
+            
+            to={`/cardetails/${car._id}`}>
             <div className="car-img"
               onMouseEnter={() => setHoveredIndex(index)}  
               onMouseLeave={() => setHoveredIndex(null)}
@@ -106,7 +115,7 @@ function Vehicles() {
                 </p>
               </div>
               <div className="car-info-list">
-                <NavLink>
+                <NavLink to={`/cardetails/${car._id}`}>
                   Book Now
 
                 </NavLink>
@@ -116,7 +125,7 @@ function Vehicles() {
 
 
 
-          </div>
+            </NavLink></div>
 
 
 
